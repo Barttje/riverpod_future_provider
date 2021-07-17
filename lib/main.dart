@@ -36,10 +36,10 @@ class MultipleCategorySelection extends StatelessWidget {
   }
 }
 
-class ArticleList extends HookWidget {
+class ArticleList extends HookConsumerWidget {
   @override
-  Widget build(BuildContext context) {
-    final article = useProvider(articles);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final article = ref.watch(articles);
     return article.when(
         loading: () => Center(child: const CircularProgressIndicator()),
         error: (err, stack) => Text('Error: $err'),
